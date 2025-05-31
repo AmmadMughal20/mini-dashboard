@@ -5,6 +5,8 @@ import type { RootState } from '../store'
 import { logout } from '../features/authSlice'
 import SalesCard from '../components/SalesCard'
 import ProfileCard from '../components/ProfileCard'
+import NotificationsCard from '../components/NotificationsCard'
+import TasksCard from '../components/TasksCard'
 const
     Dashboard: React.FC = () =>
     {
@@ -53,14 +55,14 @@ const
                         {/* Notifications Card */}
                         <div className="col-span-1 flex">
                             <div className="w-full min-h-[280px] min-w-[320px]">
-                                {/* To be added */}
+                                <NotificationsCard />
                             </div>
                         </div>
 
                         {/* Tasks Card */}
                         <div className="col-span-1 flex">
                             <div className="w-full min-h-[280px] min-w-[320px]">
-                                {/* To be added */}
+                                <TasksCard />
                             </div>
                         </div>
                     </div>
