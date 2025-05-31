@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from '../store'
 import { logout } from '../features/authSlice'
+import SalesCard from '../components/SalesCard'
 const
     Dashboard: React.FC = () =>
     {
@@ -30,6 +31,39 @@ const
                         </div>
                     </div>
                 </header>
+
+                {/* Dashboard Grid with consistent card sizing */}
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
+                        {/* Sales Card */}
+                        <div className="col-span-1 flex">
+                            <div className="w-full min-h-[280px] min-w-[320px]">
+                                <SalesCard />
+                            </div>
+                        </div>
+
+                        {/* Profile Card */}
+                        <div className="col-span-1 flex">
+                            <div className="w-full min-h-[280px] min-w-[320px]">
+                                {/* To be added */}
+                            </div>
+                        </div>
+
+                        {/* Notifications Card */}
+                        <div className="col-span-1 flex">
+                            <div className="w-full min-h-[280px] min-w-[320px]">
+                                {/* To be added */}
+                            </div>
+                        </div>
+
+                        {/* Tasks Card */}
+                        <div className="col-span-1 flex">
+                            <div className="w-full min-h-[280px] min-w-[320px]">
+                                {/* To be added */}
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
         )
     }
