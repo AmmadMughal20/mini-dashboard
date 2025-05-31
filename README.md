@@ -1,54 +1,158 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Mini Dashboard Prototype
 
-Currently, two official plugins are available:
+A modern, responsive dashboard application built with React, Redux Toolkit, and TypeScript. Features authentication, user profile management, notifications, and a drag-and-drop task list.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+### Authentication
+- Login/signup functionality with form validation
+- Persistent authentication via localStorage
+- Clean, modern auth UI matching the dashboard theme
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Dashboard Components
+- **Sales Card**: Displays current sales with growth percentage and mini chart visualization
+- **Profile Card**: User profile management with avatar upload and editable fields
+- **Notifications Panel**: Interactive notifications with read/unread states
+- **Task List**: Drag-and-drop task management with add/remove/toggle functionality
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Technical Features
+- Pixel-perfect responsive design
+- Redux Toolkit for state management
+- TypeScript for type safety
+- Drag-and-drop with @dnd-kit
+- Component testing with React Testing Library
+
+## Technology Stack
+
+- **Frontend**: React, TypeScript
+- **State Management**: Redux Toolkit
+- **Styling**: Tailwind CSS
+- **Drag & Drop**: @dnd-kit
+- **Testing**: Vitest, React Testing Library
+- **Build Tool**: Vite
+
+## Setup & Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd mini-dashboard
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Run tests**
+   ```bash
+   npm test
+   ```
+
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+## Architecture Overview
+
+### State Management
+The application uses Redux Toolkit with feature-based slices:
+
+- `authSlice`: Manages authentication state and localStorage persistence
+- `profileSlice`: Handles user profile data and avatar management
+- `notificationsSlice`: Manages notification list and read/unread states
+- `tasksSlice`: Handles task CRUD operations and drag-and-drop reordering
+- `salesSlice`: Contains sales dashboard data and chart information
+
+### Component Structure
+```
+src/
+├── components/
+│   ├── ui/
+│   │   └── avatar.tsx            # Avatar component
+│   │   └── button.tsx            # Button component
+│   │   └── card.tsx              # Card component
+│   │   └── checkbox.tsx          # Checkbox component
+│   │   └── input.tsx             # Input component
+│   └── NotificationsCard.tsx     # Notifications panel layout
+│   └── ProfileCard.tsx           # User profile form
+│   └── SalesCard.tsx             # Sales visualization card
+│   └── TasksCard.tsx             # Drag-and-drop task list
+├── store.ts                      # Redux store configuration
+├── features                      # Feature-based Redux slices
+│   ├── authSlice.ts                  
+│   ├── notificationsSlice.ts                  
+│   ├── profileSlice.ts                  
+│   ├── salesSlice.ts                  
+│   ├── tasksSlice.ts                  
+├── pages                         # Pages in app
+│   ├── AuthScreen.tsx            # Authentication screen including sign in and sign up                  
+│   ├── Dashboard.tsx             # Dashboard page   
+├── test                          
+│   ├── setup.ts                  # Testing setup              
+└── __tests__/                    # Component tests
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Design Decisions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Responsive Layout
+- Grid-based layout that adapts from 1 column (mobile) to 2 columns (desktop)
+- Cards maintain consistent aspect ratios across screen sizes
+- Touch-friendly interactions for mobile devices
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+### Code Quality
+- TypeScript for compile-time error prevention
+- Comprehensive component documentation
+- Modular, reusable component architecture
+- Redux for predictable state management
+
+## Testing Strategy
+
+The application includes unit tests for key components:
+
+- **SalesCard**: Snapshot testing and data rendering validation
+- **TasksCard**: User interaction testing (add/toggle tasks)
+- **Component Integration**: Redux state interaction testing
+
+Run tests with: `npm test`
+
+## Development Guidelines
+
+### Adding New Features
+1. Create feature slice in `src/features/`
+2. Add slice to store configuration
+3. Create components in appropriate directory
+4. Write tests for new functionality
+5. Update documentation
+
+### State Management Patterns
+- Use Redux Toolkit for all global state
+- Keep component state local when possible
+- Use TypeScript interfaces for type safety
+- Follow the "ducks" pattern for slice organization
+
+### Styling Guidelines
+- Use Tailwind utility classes for styling
+- Maintain design system conventions
+- Ensure responsive design principles
+
+## Assumptions & Trade-offs
+
+### Assumptions
+- Modern browser support (ES2020+)
+- Users have JavaScript enabled
+- Network connectivity for initial app load
+- Local storage available for auth persistence
+
+### Trade-offs
+- **localStorage vs Secure Storage**: Used localStorage for simplicity; production would use secure HTTP-only cookies
+- **Mock Data vs API**: Implemented with mock data; real implementation would use REST/GraphQL APIs
+- **Simple Auth**: Basic email/password auth; production would include proper validation, password reset, etc.
