@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginStart, loginSuccess } from '../features/authSlice'
 import type { AppDispatch } from '../store'
+import { Input } from '../components/ui/input'
+import { Button } from '../components/ui/button'
 
 /**
  * Authentication screen component handling login and signup
@@ -47,7 +49,7 @@ const AuthScreen: React.FC = () =>
 
                 {!isLogin && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input
+                        <Input
                             type="text"
                             placeholder="First Name"
                             value={firstName}
@@ -55,7 +57,7 @@ const AuthScreen: React.FC = () =>
                             required
                             className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
-                        <input
+                        <Input
                             type="text"
                             placeholder="Last Name"
                             value={lastName}
@@ -66,7 +68,7 @@ const AuthScreen: React.FC = () =>
                     </div>
                 )}
 
-                <input
+                <Input
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -74,7 +76,7 @@ const AuthScreen: React.FC = () =>
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
-                <input
+                <Input
                     type="password"
                     placeholder="Password"
                     value={password}
@@ -82,22 +84,22 @@ const AuthScreen: React.FC = () =>
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
-                <button
+                <Button
                     type="submit"
                     className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
                     {isLogin ? 'Sign In' : 'Sign Up'}
-                </button>
+                </Button>
             </form>
 
             <div className="absolute bottom-6 w-full text-center">
-                <button
+                <Button
                     type="button"
                     onClick={() => setIsLogin(!isLogin)}
                     className="text-sm text-blue-600 hover:underline"
                 >
                     {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
-                </button>
+                </Button>
             </div>
         </div>
 
